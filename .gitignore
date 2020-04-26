@@ -1,32 +1,24 @@
-# Prerequisites
-*.d
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# IDE
+.idea/
+.vscode/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Dependencies
+node_modules/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Testing
+coverage/
 
-# Fortran module files
-*.mod
-*.smod
+# Artifacts
+build/
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Logs
+npm-debug.log*
