@@ -222,6 +222,7 @@ export class NewtonIterator {
 
   private getStatus(stage: Object[]) {
     if (stage[0] === this.saveSequence) {
+      // @ts-ignore
       const zs = stage[1]['zs'];
       let line = zs.toString();
       if (line.length > 10) {
@@ -230,6 +231,7 @@ export class NewtonIterator {
 
       return Sequence(undefined); // TODO.
     } else if (stage[0] === this.saveClassification) {
+      // @ts-ignore
       const limits = stage[1]['limits'];
 
       return Sequence(undefined); // TODO.
@@ -239,7 +241,7 @@ export class NewtonIterator {
   run() {
     const stages = undefined; // TODO.
     this.status = Sequence('All', stages).width(50); // TODO.
-    this.status.getAttribute('_cached_print')(); // wtf is this.
+    this.status.getAttribute('cachedPrint')(); // wtf is this.
 
     for (let s of this.schedule) {
       s[0](s[1]); // wtf is this.
@@ -269,7 +271,7 @@ export class NewtonIterator {
       if (this.status !== null) this.status.step();
     });
 
-    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `f${fileName}.png`)); //bullshit.
+    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`)); //bullshit.
     if (this.status !== null) this.status.step();
   }
 
@@ -303,8 +305,194 @@ export class NewtonIterator {
       });
       plt.plot(x, y, 'o', (color = limits.colors[i]), (ms = 1)); //bullshit.
     }
-    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `f${fileName}.png`)); //bullshit.
+    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`)); //bullshit.
 
     if (this.status !== null) this.status.step();
+  }
+}
+
+function clear() {
+  return undefined; // TODO.
+}
+
+class Reportable {
+  private readonly width = 100;
+  private readonly item = '-';
+  public allTicks: number;
+  public ticks: number;
+  private readonly every: number;
+  private cache: string;
+
+  constructor(public name: string, public readonly limit: number) {
+    this.allTicks = 0;
+    this.ticks = 0;
+    this.every = 1;
+    this.cache = '';
+  }
+
+  private ensure(ticks: number | null, limit: number | null) {
+    if (ticks === null) ticks = this.ticks;
+    if (limit === null) limit = this.limit;
+
+    return [ticks, limit];
+  }
+
+  protected bar(ticks: number | null = null, limit: number | null = null): string {
+    [ticks, limit] = this.ensure(ticks, limit);
+    const ratio = ticks / limit;
+    const items = Math.floor(this.width * ratio);
+    const empty = ratio === 1 ? '' : `>${' '.repeat(this.width - items - 1)}`;
+
+    return `[${this.item.repeat(items)}${empty}] ${this.percent(ticks, limit)}`;
+  }
+
+  protected percent(ticks: number | null = null, limit: number | null = null): string {
+    [ticks, limit] = this.ensure(ticks, limit);
+
+    return `${Math.floor((100 * ticks) / limit)}%`;
+  }
+
+  protected ratio(ticks: number | null = null, limit: number | null = null): string {
+    [ticks, limit] = this.ensure(ticks, limit);
+
+    return `${ticks}/${limit}`;
+  }
+
+  tick(): boolean {
+    if (!this.isFull()) {
+      this.allTicks++;
+      this.ticks++;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  protected cachedPrint() {
+    const out = this.repr();
+
+    if (out != this.cache && (this.allTicks % this.every == 0 || this.isFull())) {
+      this.cache = out;
+      clear();
+      print(out); // TODO.
+    }
+  }
+
+  isFull(): boolean {
+    return this.allTicks == this.fullLimit();
+  }
+
+  step() {
+    if (this.tick()) this.cachedPrint();
+  }
+
+  // TODO setters for width and every.
+
+  fullLimit() {
+    return this.limit;
+  }
+}
+
+class Stage extends Reportable {
+  constructor(public readonly name: string, limit: number) {
+    super(name, limit);
+  }
+
+  repr(): string {
+    return `${this.name}:\n${this.bar()}\n`;
+  }
+}
+
+class Iteration extends Reportable {
+  public readonly origin: Reportable;
+  private rep?: Reportable;
+
+  constructor(limit: number, rep: Reportable) {
+    super('Iteration', limit);
+    this.ticks++;
+    this.origin = rep;
+    this.newRep();
+  }
+
+  private newRep(): void {
+    this.rep = deepcopy(this.origin); // TODO deepcopy.
+    this.rep!.name += ` #${this.ticks}`;
+  }
+
+  tick(): boolean {
+    if (this.rep!.tick()) this.allTicks++;
+    if (!this.isFull()) {
+      this.ticks++;
+      this.newRep();
+
+      return this.tick();
+    }
+
+    return false;
+  }
+
+  fullLimit(): number {
+    return this.limit * this.rep!.fullLimit();
+  }
+
+  private repr() {
+    return `${this.name} ${this.ratio()}:\n$${this.rep}`;
+  }
+}
+
+class Sequence extends Reportable {
+  private readonly stages: Reportable[];
+  private readonly allLimit: number;
+
+  constructor(name: string, args: Reportable[]) {
+    super(name, args.length - 1);
+    this.stages = args;
+    this.allTicks = 0;
+    this.allLimit = this.fullLimit();
+  }
+
+  private stage(): Reportable {
+    return this.stages[this.ticks];
+  }
+
+  private nextStage(): boolean {
+    if (!this.isFull()) {
+      this.ticks++;
+      return true;
+    }
+
+    return false;
+  }
+
+  tick(): boolean {
+    if (this.stage().tick()) {
+      this.allTicks++;
+
+      if (this.stage().isFull()) {
+        this.nextStage();
+      }
+
+      return true;
+    }
+
+    return this.nextStage() && this.tick();
+  }
+
+  fullLimit(): number {
+    let sum = 0;
+    this.stages.forEach(stage => {
+      sum += stage.fullLimit();
+    });
+
+    return sum;
+  }
+
+  private repr(): string {
+    return `${this.name} (step ${this.ratio(this.ticks + 1, this.limit + 1)}):\n` +
+      `${this.bar(this.allTicks, this.allLimit)}\n` +
+      this.stages.slice(0, this.ticks + 1).map(stage => {
+        stage.toString();
+      }).join();
   }
 }
