@@ -214,7 +214,7 @@ export class NewtonIterator {
     return this;
   }
 
-  classification(limits: PictureEnv, fileName: string) {
+  classification(limits: PictureEnv, fileName: string): NewtonIterator {
     this.schedule.push([this.saveClassification, { limits, fileName }]);
 
     return this;
@@ -229,22 +229,31 @@ export class NewtonIterator {
         line = line.slice(0, 10) + '...';
       }
 
-      return Sequence(undefined); // TODO.
+      return new Sequence(
+        `Sequence ${line}`,
+        new Stage('Calculating', zs.length),
+        new Stage('Saving', 1)
+      );
     } else if (stage[0] === this.saveClassification) {
       // @ts-ignore
       const limits = stage[1]['limits'];
 
-      return Sequence(undefined); // TODO.
+      return new Sequence(
+        `Classification [${limits.lx}:${limits.rx}]` + `x[${limits.ly}:${limits.ry}]`
+      );
     }
+
+    throw new Error('Unexpected stage function');
   }
 
   run() {
-    const stages = undefined; // TODO.
-    this.status = Sequence('All', stages).width(50); // TODO.
-    this.status.getAttribute('cachedPrint')(); // wtf is this.
+    const stages = this.schedule.map(this.getStatus);
+    // @ts-ignore
+    this.status = new Sequence('All', stages).width(50);
+    this.status.cachedPrint();
 
     for (let s of this.schedule) {
-      s[0](s[1]); // wtf is this.
+      s[0](s[1]);
     }
 
     this.status = null;
@@ -264,7 +273,7 @@ export class NewtonIterator {
       });
       const root = this.plane.roots[k];
 
-      plt.scatter(x, y, linspace(50, 10, s.length), redGreenRange(s.length)); //idk.
+      plt.scatter(x, y, linspace(50, 10, s.length), redGreenRange(s.length));
       plt.plot(x, y, 'o', (color = 'black'), (lw = 1), (ls = '-'), (ms = 1)); //bullshit.
       plt.plot(root.re, root.im, 'gh', (ms = 7)); //bullshit.
 
@@ -370,12 +379,13 @@ class Reportable {
   }
 
   protected cachedPrint() {
+    // @ts-ignore
     const out = this.repr();
 
     if (out != this.cache && (this.allTicks % this.every == 0 || this.isFull())) {
       this.cache = out;
       clear();
-      print(out); // TODO.
+      console.log(out);
     }
   }
 
@@ -416,7 +426,7 @@ class Iteration extends Reportable {
   }
 
   private newRep(): void {
-    this.rep = deepcopy(this.origin); // TODO deepcopy.
+    this.rep = JSON.parse(JSON.stringify(this.origin));
     this.rep!.name += ` #${this.ticks}`;
   }
 
@@ -445,7 +455,7 @@ class Sequence extends Reportable {
   private readonly stages: Reportable[];
   private readonly allLimit: number;
 
-  constructor(name: string, args: Reportable[]) {
+  constructor(name: string, ...args: Reportable[]) {
     super(name, args.length - 1);
     this.stages = args;
     this.allTicks = 0;
@@ -489,10 +499,15 @@ class Sequence extends Reportable {
   }
 
   private repr(): string {
-    return `${this.name} (step ${this.ratio(this.ticks + 1, this.limit + 1)}):\n` +
+    return (
+      `${this.name} (step ${this.ratio(this.ticks + 1, this.limit + 1)}):\n` +
       `${this.bar(this.allTicks, this.allLimit)}\n` +
-      this.stages.slice(0, this.ticks + 1).map(stage => {
-        stage.toString();
-      }).join();
+      this.stages
+        .slice(0, this.ticks + 1)
+        .map(stage => {
+          stage.toString();
+        })
+        .join()
+    );
   }
 }
