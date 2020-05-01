@@ -1,3 +1,3 @@
-# numerical methods homeworks
+# Numerical methods course homeworks
 
-all rights reserved by Basik Limited
+PoolParty corp. (c) all rights reserved
