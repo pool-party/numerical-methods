@@ -51,35 +51,37 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
    <img src="../assets/hw1-task2-stairs.jpg" alt="img" style="zoom:70%;" align="left" />
 
-2)  $1 < r < 3$
+2.   $1 < r < 3$
 
     - $1 < r < 2$
-
+    
       пусть $r = 1.5$
-
+    
       $\phi(x) = {3 \over 2} x (1 - x)$
-
+    
       $\phi'(x) = {3 \over 2} - 3x$
-
+    
       при $x \in [{1 \over 3} - \delta, {1 \over 3} + \delta]$ $|\phi'(x)| < 1$ и непрерывно $\implies$ по теореме о сходимости метода простых итераций последовательность сходится к корню $x = {1 \over 3}$
-
+    
       <img src="../assets/hw1-task2-stairs-15.jpg" alt="img" style="zoom:70%;" align="left" />
+      
+    - $2 < r < 3$
 
-- $2 < r < 3$
+      пусть $r = 2.5$
 
-  пусть $r = 2.5$
+      $\phi(x) = {5 \over 2} x (1 - x)$
 
-  $\phi(x) = {5 \over 2} x (1 - x)$
+      $\phi'(x) = {5 \over 2} - {5 \over x}$
 
-  $\phi'(x) = {5 \over 2} - {5 \over x}$
+      аналогично итерационная последовательность сходится к корню $x = {3 \over 5}$
 
-  аналогично итерационная последовательность сходится к корню $x = {3 \over 5}$
+      так как при $x \in [{3 \over 5} - \delta, {3 \over 5} + \delta]$
 
-  так как при $x \in [{3 \over 5} - \delta, {3 \over 5} + \delta]$
+      $|\phi'(x)| < 1$ и непрерывна
 
-  $|\phi'(x)| < 1$ и непрерывна
+      <img src="../assets/hw1-task2-snail.jpg" alt="img" style="zoom:70%;" align="left" />
 
-  <img src="../assets/hw1-task2-snail.jpg" alt="img" style="zoom:70%;" align="left" />
+
 
 ## Задание 3
 
