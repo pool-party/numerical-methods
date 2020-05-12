@@ -129,8 +129,6 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
 ## Задание 3 
 
-## TO FUCKING DO: MAKE SMART WORDS HERE IN THIS TASK
-
 ![img](../assets/hw1-task3-equation.png)
 
 Для случайных начальных значений:
