@@ -48,12 +48,16 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
    + Возьмём  $r = 0.5$
      
      $\phi(x) = {1 \over 2} x (1 - x)$
-   
+
      $\phi'(x) = {1 \over 2} - x$
 
      по теореме о сходимости метода простых итераций итерационная последовательность сходится к корню $x = 0$, так как на отрезке $x \in [0 - \delta, 0 + \delta]$ $\phi'(x)$ непрерывна и $|\phi'(x)| < 1$
 
      <img src="../assets/hw1-task2-stairs.jpg" alt="img" style="zoom:70%;" align="left" />
+     
+     <img src="../assets/hw1-task2-graph1.png" alt="img" style="zoom:70%;" align="left" />
+     
+     
 
 2. $1 < r < 3$
 
@@ -69,8 +73,10 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
      <img src="../assets/hw1-task2-stairs-15.jpg" alt="img" style="zoom:70%;" align="left" />
      
-     график иллюстрирует монотонную сходимость
+     <img src="../assets/hw1-task2-graph2.png" alt="img" style="zoom:70%;" align="left" />
      
+     график иллюстрирует монотонную сходимость
+  
    - $2 < r < 3$
 
      пусть $r = 2.5$
@@ -84,8 +90,10 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
      так как при $x \in [{3 \over 5} - \delta, {3 \over 5} + \delta]$
 
      $|\phi'(x)| < 1$ и непрерывна
-
+   
      <img src="../assets/hw1-task2-snail.jpg" alt="img" style="zoom:70%;" align="left" />
+     
+     <img src="../assets/hw1-task2-graph3.png" alt="img" style="zoom:70%;" align="left" />
      
      график иллюстрирует колебательную сходимость
 
