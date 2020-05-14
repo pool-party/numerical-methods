@@ -39,6 +39,58 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Задание 2
 
 Будем везде брать $x_0 = 0.5$
@@ -55,15 +107,15 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
      Путь итерационной последовательности: 
      
-     <img src="../assets/hw1-task2-stairs.jpg" alt="img" style="zoom:70%;" align="left" />
+     <img src="../assets/hw1-task2-stairs.jpg" alt="img" style="zoom:60%;" align="left" />
      
      График: i -> $x_i$
      
-     <img src="../assets/hw1-task2-graph1.png" alt="img" style="zoom:70%;" align="left" />
+     <img src="../assets/hw1-task2-graph1.png" alt="img" style="zoom:60%;" align="left" />
      
      
 
-2.    $1 < r < 3$
+2. $1 < r < 3$
 
    - $1 < r < 2$
 
@@ -77,14 +129,14 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
 
      Путь итерационной последовательности: 
      
-     <img src="../assets/hw1-task2-stairs-15.jpg" alt="img" style="zoom:70%;" align="left" />
+     <img src="../assets/hw1-task2-stairs-15.jpg" alt="img" style="zoom:60%;" align="left" />
      
      График: i -> $x_i$
-  
-     <img src="../assets/hw1-task2-graph2.png" alt="img" style="zoom:70%;" align="left" />
-  
+     
+     <img src="../assets/hw1-task2-graph2.png" alt="img" style="zoom:60%;" align="left" />
+     
      График иллюстрирует монотонную сходимость.
-  
+     
    - $2 < r < 3$
 
      пусть $r = 2.5$
@@ -94,36 +146,114 @@ $x_{n + 1} = x_n - {f(x_n) \over f'(x_n)} = x_n - {P_n(x_n) \over P_n'(x_n)}, \ 
      $\phi'(x) = {5 \over 2} - {5 \over x}$
 
      Аналогично итерационная последовательность сходится к корню $x = {3 \over 5}$ , т. к. при $x \in [{3 \over 5} - \delta, {3 \over 5} + \delta]$ производная непрерывна и ее модуль $|\phi'(x)| < 1$ меньше единицы (т.е. выполняется условие Липшица).
-   
+
      Путь итерационной последовательности: 
-   
-     <img src="../assets/hw1-task2-snail.jpg" alt="img" style="zoom:70%;" align="left" />
-   
+
+     <img src="../assets/hw1-task2-snail.jpg" alt="img" style="zoom:60%;" align="left" />
+
      График: i -> $x_i$
      
-     <img src="../assets/hw1-task2-graph3.png" alt="img" style="zoom:70%;" align="left" />
+     <img src="../assets/hw1-task2-graph3.png" alt="img" style="zoom:60%;" align="left" />
      
      В данном случае мы уже имеем колебательную сходимость.
+     
+     
+     
+     
 
 3. При r $\in$ (3; $r_{\infty}$) мы уже не можем применить теорему о сходимости, т.к. не выполняется условие Липшица $\implies$ итерационная последовательность не сходится к одному корню. Она распадается на 2, 4, 8... подпоследовательностей, каждая из которых имеет свой предел. Это можно проследить на графике:
 
-   <img src="../assets/hw1-task2-graph.png" alt="img" style="zoom:70%;" align="left" />
+   <img src="../assets/hw1-task2-graph.png" alt="img" style="zoom:60%;" align="left" />
 
 4. Покажем, что в диапозоне $r_\infty < r < 4$ поведение итерационной последовательности становится похожим на случайное (детерминированный хаос):
 
-   <img src="../assets/hw1-task2-second.png" alt="img" style="zoom:70%;" align="left" />
+   <img src="../assets/hw1-task2-second.png" alt="img" style="zoom:60%;" align="left" />
 
 
 
 Также заметим, что если рассмотреть один из подпромежутков, то при некоторых значениях $r$ 	имеются области сгущения и разрежения итерационной последовательсти. Этот график рассматривает часть предыдущего графика для наглядности
 
-<img src="../assets/hw1-task2-third.png" alt="img" style="zoom:70%;" align="left" />
+<img src="../assets/hw1-task2-third.png" alt="img" style="zoom:60%;" align="left" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+​	
+
+
+
+
+
+
 
 
 
 Этот график показывает, что в окрестности $r = 4$ поведение итерационной последовательности становится похожим на белый шум
 
-<img src="../assets/hw1-task2-fourth.png" alt="img" style="zoom:70%;" align="left" />
+<img src="../assets/hw1-task2-fourth.png" alt="img" style="zoom:50%;" align="left" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
