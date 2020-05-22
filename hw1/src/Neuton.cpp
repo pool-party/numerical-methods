@@ -7,17 +7,17 @@
 static const double EPS = 0.000001;
 
 long double P_x(long double x) { // polynom.
-    return 3200 * pow(x, 5) + 480 * pow(x, 4) - 73624 * pow(x, 3) 
-        - 10686 * pow(x, 2) + 245645 * x - 59598;
+    return 9 * pow(x, 5) - 19 * pow(x, 4) - 15 * pow(x, 3)
+        + 6 * pow(x, 2) + 18 * x - 1;
 }
 
 long double dP_x(long double x) { // first derivative.
-    return 16000 * pow(x, 4) + 1920 * pow(x, 3) - 220872 * pow(x, 2) 
-        - 21372 * x + 245645;
+    return 45 * pow(x, 4) - 76 * pow(x, 3) - 45 * pow(x, 2)
+        + 12 * x + 18;
 }
 
 long double d2P_x(long double x) { // second derivative.
-    return 64000 * pow(x, 3) + 5760 * pow(x, 2) - 441744 * x - 21372;
+    return 180 * pow(x, 3) - 228 * pow(x, 2) - 90 * x + 12;
 }
 
 
