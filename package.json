@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "numerical-methods",
+  "version": "1.0.0",
+  "description": "Homeworks for numerical methods course by PoolParty corp.",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "format": "prettier --write \"**/*.{ts,json,md}\""
+  },
+  "devDependencies": {
+    "@yandex-lms-ext/prettier-config": "1.0.2",
+    "prettier": "1.19.1",
+    "typescript": "3.7.3"
+  },
+  "dependencies": {
+    "@types/mathjs": "^6.0.5",
+    "mathjs": "^6.6.4"
+  }
+}
