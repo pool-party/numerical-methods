@@ -4,26 +4,25 @@ import math
 
 from Jacobi import jacobi
 from Seidel import seidelIterations
-from Matrices import diag_A, diag_b, random_A, random_b, hilbert_A, hilbert_b
+from Matrices import *
 
 EPS = 0.000001
+MAX_ITERATIONS = 50
 
 print("Diagonal matrix:")
 print("Jacobi solution:")
-print(jacobi(diag_A, diag_b, EPS))
+jacobi(diag_A, diag_b, EPS, MAX_ITERATIONS)
 print("Seidel solution:")
-seidelIterations(diag_A, diag_b, EPS)
+seidelIterations(diag_A, diag_b, EPS, MAX_ITERATIONS)
 
-# Division exception in Jacobi
-# print("Random matrix:")
+print("Random matrix:")
 # print("Jacobi solution:")
-# print(jacobi(random_A, random_b, EPS))
-# print("Seidel solution:")
-# seidelIterations(random_A, random_b, EPS)
+# jacobi(random_A, random_b, EPS, MAX_ITERATIONS)
+print("Seidel solution:")
+seidelIterations(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
 
-# Division exception in Jacobi
-# print("Hilbert matrix:")
+print("Hilbert matrix:")
 # print("Jacobi solution:")
-# print(jacobi(hilbert_A, hilbert_b, EPS))
-# print("Seidel solution:")
-# seidelIterations(hilbert_A, hilbert_b, EPS)
+# jacobi(hilbert_A, hilbert_b, EPS, MAX_ITERATIONS)
+print("Seidel solution:")
+seidelIterations(*symmetric(hilbert_A, hilbert_b), EPS, MAX_ITERATIONS)

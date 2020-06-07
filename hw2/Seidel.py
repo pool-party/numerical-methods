@@ -11,15 +11,22 @@ def seidel(A, b, x):
     x[j] = d / A[j][j]
   return x
 
-def seidelIterations(A, b, eps):
-  ind = 0
+def seidelIterations(A, b, eps, maxIterations):
   size = len(A)
   x = np.zeros(size)
+
+  ind = 0
   while True:
     xPrev = np.copy(x)
     x = seidel(A, b, x)
+
     ind += 1
     print(f"{ind}-th iteration:")
     print(x)
     if max(abs(x - xPrev)) < eps:
+      print("^^^^^^^^^^^^^^")
+      print("Solution found")
+      break
+    if ind > maxIterations:
+      print("Number of iterations exceeded")
       break
