@@ -22,3 +22,6 @@ build/
 
 # Logs
 npm-debug.log*
+
+# Python
+__pycache__
