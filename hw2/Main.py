@@ -17,12 +17,16 @@ seidelIterations(diag_A, diag_b, EPS, MAX_ITERATIONS)
 
 print("Random matrix:")
 # print("Jacobi solution:")
+# Division overflow
 # jacobi(random_A, random_b, EPS, MAX_ITERATIONS)
 print("Seidel solution:")
+# Works only on symmetric
 seidelIterations(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
 
 print("Hilbert matrix:")
 # print("Jacobi solution:")
+# Division overflow
 # jacobi(hilbert_A, hilbert_b, EPS, MAX_ITERATIONS)
 print("Seidel solution:")
-seidelIterations(*symmetric(hilbert_A, hilbert_b), EPS, MAX_ITERATIONS)
+# More than 10k iterations, goes to 10k even w/o symmetric
+seidelIterations(hilbert_A, hilbert_b, EPS, MAX_ITERATIONS)
