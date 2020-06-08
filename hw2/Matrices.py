@@ -7,7 +7,7 @@ def beautify_print_matrix(A, b, format="{:3}"):
     print((" ".join([f"{format}" for i in range(len(A_i))]) + f" | {format}").format(*A_i, b_i))
 
 def symmetric(A, b):
-  return A.dot(A.T), b.dot(A.T)
+  return A.T @ A, A.T @ b
 
 diag_A =  np.array([[ 73,  -8,  -1,  -2,   2,  -9,   3,   1, -10,  -3,   0, -10],
                     [ -9,  89,  -1,   0,   8,   3,   7,   6, -10,   7,  -6,   6],
