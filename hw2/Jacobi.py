@@ -17,6 +17,6 @@ def jacobi(A, b, eps, maxIterations):
     if max(abs(x - xPrev)) < eps:
       print("^^^^^^^^^^^^^^")
       print("Solution found")
-      break
+      return
 
   print("Number of iterations exceeded")
