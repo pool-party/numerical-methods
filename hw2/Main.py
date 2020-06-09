@@ -10,7 +10,7 @@ from Gradient import gradient
 
 
 EPS = 0.000001
-MAX_ITERATIONS = 100
+MAX_ITERATIONS = 100000
 OMEGA = 0.5
 
 print("Diagonal matrix:")
@@ -29,7 +29,7 @@ print("Random matrix:")
 print("Exact solution:")
 print(np.linalg.solve(random_A, random_b))
 print("Jacobi solution:")
-jacobi(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
+jacobi(random_A, random_b, EPS, MAX_ITERATIONS)
 print("Seidel solution:")
 seidelIterations(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
 print("Relaxation solution:")
@@ -41,7 +41,7 @@ print("Hilbert matrix:")
 print("Exact solution:")
 print(np.linalg.solve(hilbert_A, hilbert_b))
 print("Jacobi solution:")
-jacobi(*symmetric(hilbert_A, hilbert_b), EPS, MAX_ITERATIONS)
+jacobi(hilbert_A, hilbert_b, EPS, MAX_ITERATIONS)
 print("Seidel solution:")
 seidelIterations(*symmetric(hilbert_A, hilbert_b), EPS, MAX_ITERATIONS)
 print("Relaxation solution:")

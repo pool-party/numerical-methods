@@ -7,6 +7,11 @@ def jacobi(A, b, eps, maxIterations):
   D = np.diag(A)
   R = A - np.diagflat(D)
 
+  for i in range(size):
+    if sum(abs(R[i])) >= abs(D[i]):
+      print("Warning: Matrix is not diagonally dominant")
+      break
+
   for i in range(maxIterations):
     for j in range(size):
       x = (b - np.dot(R,x)) / D
