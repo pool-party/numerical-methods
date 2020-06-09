@@ -9,11 +9,11 @@ def gradient(A, b, eps, maxIterations):
   for k in range(maxIterations):
     print(f"{k}-th iteration:")
     print(xk)
-    if np.linalg.norm(A @ xk - b) <= eps * np.linalg.norm(b):
+    if np.linalg.norm(np.dot(A, xk) - b) <= eps * np.linalg.norm(b):
       print("^^^^^^^^^^^^^^")
       print("Solution found")
       return
-    a = np.dot(rk, rk) / np.dot(A @ zk, zk)
+    a = np.dot(rk, rk) / np.dot(np.dot(A, zk), zk)
     x = xk + a * zk
     r = rk - a * np.dot(A, zk)
     beta = np.dot(r, r) / np.dot(rk, rk)

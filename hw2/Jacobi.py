@@ -8,13 +8,12 @@ def jacobi(A, b, eps, maxIterations):
   R = A - np.diagflat(D)
 
   for i in range(maxIterations):
-    xPrev = np.copy(x)
     for j in range(size):
       x = (b - np.dot(R,x)) / D
 
     print(f"{i}-th iteration:")
     print(x)
-    if max(abs(x - xPrev)) < eps:
+    if np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b):
       print("^^^^^^^^^^^^^^")
       print("Solution found")
       return
