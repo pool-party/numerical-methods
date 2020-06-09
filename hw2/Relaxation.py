@@ -5,6 +5,7 @@ def relaxation(A, b, omega, eps, maxIterations):
   x = np.zeros(size)
 
   for k in range(maxIterations):
+    xPrev = np.copy(x)
     for j in range(size):
       d = b[j]
 
@@ -15,7 +16,8 @@ def relaxation(A, b, omega, eps, maxIterations):
 
     print(f"{k}-th iteration:")
     print(x)
-    if np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b):
+    if (np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b)
+          or np.linalg.norm(x - xPrev) <= eps * np.linalg.norm(xPrev)):
       print("^^^^^^^^^^^^^^")
       print("Solution found")
       return
