@@ -24,5 +24,5 @@ def gauss(A, b):
       m = a[i] / b[i]
       Ab[j] = a - m * b
 
-  x = Ab[:, 12]
+  x = Ab[:, n]
   print(x)
