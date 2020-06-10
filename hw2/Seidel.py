@@ -21,10 +21,13 @@ def seidelIterations(A, b, eps, maxIterations):
 
     print(f"{i}-th iteration:")
     print(x)
-    if (np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b)
-          or np.linalg.norm(x - xPrev) <= eps * np.linalg.norm(xPrev)):
+    if np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b):
       print("^^^^^^^^^^^^^^")
-      print("Solution found")
+      print(">> НЕВЯЗКА << Solution found")
+      return
+    if np.linalg.norm(x - xPrev) <= eps * np.linalg.norm(xPrev):
+      print("^^^^^^^^^^^^^^")
+      print(">> МАЛОСТЬ НОРМЫ РАЗНИЦЫ << Solution found")
       return
 
   print("Number of iterations exceeded")
