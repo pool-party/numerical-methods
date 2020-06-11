@@ -27,11 +27,11 @@ def jacobi(A, b, eps, maxIterations):
     print(x)
     if np.linalg.norm(np.dot(A, x) - b) <= eps * np.linalg.norm(b):
       print("^^^^^^^^^^^^^^")
-      print(">> НЕВЯЗКА << Solution found")
+      print(">> Малость невязки << Solution found")
       return
     if np.linalg.norm(x - xPrev) <= eps * np.linalg.norm(xPrev):
       print("^^^^^^^^^^^^^^")
-      print(">> МАЛОСТЬ НОРМЫ РАЗНИЦЫ << Solution found")
+      print(">> Малость нормы приближений << Solution found")
       return
 
   print("Number of iterations exceeded")

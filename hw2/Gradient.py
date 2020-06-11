@@ -16,11 +16,11 @@ def gradient(A, b, eps, maxIterations):
     print(xk)
     if np.linalg.norm(np.dot(A, xk) - b) <= eps * np.linalg.norm(b):
       print("^^^^^^^^^^^^^^")
-      print(">> НЕВЯЗКА << Solution found")
+      print(">> Малость невязки << Solution found")
       return
     if np.linalg.norm(x - xk) <= eps * np.linalg.norm(xk):
       print("^^^^^^^^^^^^^^")
-      print(">> МАЛОСТЬ НОРМЫ РАЗНИЦЫ << Solution found")
+      print(">> Малость нормы приближений << Solution found")
       return
     xk, rk, zk = x, r, z
 
