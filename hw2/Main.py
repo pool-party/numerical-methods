@@ -10,7 +10,7 @@ from Gradient import gradient
 from Gauss import gauss
 
 EPS = 0.000001
-MAX_ITERATIONS = 100000
+MAX_ITERATIONS = 1000000
 OMEGA = 0.5
 
 print("Diagonal matrix:")
