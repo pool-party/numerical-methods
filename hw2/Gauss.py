@@ -1,28 +1,59 @@
-from Matrices import *
-import numpy as np
+import numpy
+import copy
 
 
-def gauss(A, b):
-  Ab = np.hstack([A, b.reshape(-1, 1)])
+def gaussFunc(a):
+    len1 = len(a[:, 0])
+    len2 = len(a[0, :])
 
-  n = len(b)
+    for g in range(len1):
 
-  for i in range(n):
-    a = Ab[i]
+        max = abs(a[g][g])
+        my = g
+        t1 = g
+        while t1 < len1:
+            # for t1 in range(len(a[:,0])):
+            if abs(a[t1][g]) > max:
+                max = abs(a[t1][g])
+                my = t1
+            t1 += 1
 
-    for j in range(i + 1, n):
-      b = Ab[j]
-      m = a[i] / b[i]
-      Ab[j] = a - m * b
+        if my != g:
+            # a[g][:], a[my][:] = a[my][:], a[g][:]
+            # numpy.swapaxes(a, 1, 0)
+            b = copy.deepcopy(a[g])
+            a[g] = copy.deepcopy(a[my])
+            a[my] = copy.deepcopy(b)
 
-  for i in range(n - 1, -1, -1):
-    Ab[i] = Ab[i] / Ab[i, i]
-    a = Ab[i]
+        amain = float(a[g][g])
 
-    for j in range(i - 1, -1, -1):
-      b = Ab[j]
-      m = a[i] / b[i]
-      Ab[j] = a - m * b
+        z = g
+        while z < len2:
+            a[g][z] = a[g][z] / amain
+            z += 1
 
-  x = Ab[:, n]
-  print(x)
+        j = g + 1
+
+        while j < len1:
+            b = a[j][g]
+            z = g
+
+            while z < len2:
+                a[j][z] = a[j][z] - a[g][z] * b
+                z += 1
+            j += 1
+
+    a = backTrace(a, len1, len2)
+    return a
+
+
+def backTrace(a, len1, len2):
+    a = numpy.array(a)
+    i = len1 - 1
+    while i > 0:
+        j = i - 1
+        while j >= 0:
+            a[j][len1] = a[j][len1] - a[j][i] * a[i][len1]
+            j -= 1
+        i -= 1
+    return a[:, len2 - 1]

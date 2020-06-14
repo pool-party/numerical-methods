@@ -7,7 +7,7 @@ from Matrices import *
 from Seidel import seidelIterations
 from Relaxation import relaxation
 from Gradient import gradient
-from Gauss import gauss
+from Gauss import gaussFunc
 
 EPS = 0.000001
 MAX_ITERATIONS = 1000000
@@ -25,7 +25,7 @@ relaxation(diag_A, diag_b, OMEGA, EPS, MAX_ITERATIONS)
 print("\nGradient solution:")
 gradient(*symmetric(diag_A, diag_b), EPS, MAX_ITERATIONS)
 print("\nGaussian solution:")
-gauss(*symmetric(diag_A, diag_b))
+print(gaussFunc(addColumn(diag_A, diag_b2)))
 
 print("\n\n\nRandom matrix:")
 print("Exact solution:")
@@ -39,8 +39,8 @@ relaxation(*symmetric(random_A, random_b), OMEGA, EPS, MAX_ITERATIONS)
 print("\nGradient solution:")
 gradient(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
 print("\nGaussian solution:")
-gauss(*symmetric(random_A, random_b))
-
+print(gaussFunc(addColumn(random_A, random_b2)))
+#
 print("\n\n\nHilbert matrix:")
 print("Exact solution:")
 print(np.linalg.solve(hilbert_A, hilbert_b))
@@ -53,4 +53,4 @@ relaxation(*symmetric(hilbert_A, hilbert_b), OMEGA, EPS, MAX_ITERATIONS)
 print("\nGradient solution:")
 gradient(*symmetric(hilbert_A, hilbert_b), EPS, MAX_ITERATIONS)
 print("\nGaussian solution:")
-gauss(*symmetric(hilbert_A, hilbert_b))
+print(gaussFunc(addColumn(hilbert_A, hilbert_b2)))
