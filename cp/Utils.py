@@ -1,14 +1,16 @@
 import math
 import json
 
+elements = 14
+
 # TODO: read coefficents from Bank_TD_Fragment.dat
-H = [] # Энергии образования. H(298)
-phiCoefs = [[]] # Коэффициенты аппроксимации. f1 - f7
+H = [0 for _ in range(elements)] # Энергии образования. H(298)
+phiCoefs = [[] for _ in range(elements)] # Коэффициенты аппроксимации. f1 - f7
 P = 100000 # Атмосферное давлениеы
-sigma = []
-eps = []
-ro = [] # Плотности
-mu = [] # Молярные массы
+sigma = [0 for _ in range(elements)]
+eps = [0 for _ in range(elements)]
+ro = [0 for _ in range(elements)] # Плотности
+mu = [0 for _ in range(elements)] # Молярные массы
 
 # indexes
 AlCl  = 0
@@ -26,11 +28,22 @@ Ga    = 11
 AlN   = 12
 GaN   = 13
 
+ro[Al]  = 2690
+ro[Ga]  = 5900
+ro[AlN] = 3200
+ro[GaN] = 6150
+
 def readData():
   dataFile = open("Data.json", "r")
   data = json.load(dataFile)
-  for d in data:
-    print(d)
+  for i in data:
+    elemData = data[i]
+    index = int(i)
+    H[index] = elemData.get("H(298)")
+    phiCoefs[index] = elemData.get("f")
+    sigma[index] = elemData.get("sigma")
+    eps[index] = elemData.get("epsil")
+    mu[index] = elemData.get("mu")
 
 def x(T):
   return T / 10000
