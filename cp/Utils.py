@@ -3,7 +3,7 @@ import math
 # TODO: read coefficents from Bank_TD_Fragment.dat
 H = [] # Энергии образования. H(298)
 phiCoefs = [[]] # Коэффициенты аппроксимации. f1 - f7
-P = 10000 # Атмосферное давлениеы
+P = 100000 # Атмосферное давлениеы
 sigma = []
 eps = []
 mu = [] # Молярные массы
@@ -86,3 +86,6 @@ def D(i, T):
   :return:
   '''
   return (2.628 * (T ** (3 / 2))) / (100 * P * sigmaN2(i) * omega(T, i) * (muN2(i) ** (1 / 2)))
+
+def celsiusToKelvin(C):
+  return C + 273.15
