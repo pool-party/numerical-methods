@@ -6,7 +6,7 @@ elements = 14
 # TODO: read coefficents from Bank_TD_Fragment.dat
 H = [0 for _ in range(elements)] # Энергии образования. H(298)
 phiCoefs = [[] for _ in range(elements)] # Коэффициенты аппроксимации. f1 - f7
-P = 100000 # Атмосферное давлениеы
+P = 100000 # Атмосферное давление
 sigma = [0 for _ in range(elements)]
 eps = [0 for _ in range(elements)]
 ro = [0 for _ in range(elements)] # Плотности
