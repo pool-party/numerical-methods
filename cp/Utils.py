@@ -1,4 +1,5 @@
 import math
+import json
 
 # TODO: read coefficents from Bank_TD_Fragment.dat
 H = [] # Энергии образования. H(298)
@@ -13,10 +14,23 @@ mu = [] # Молярные массы
 AlCl  = 0
 AlCl2 = 1
 AlCl3 = 2
-HCl   = 3
-H2    = 4
-N2    = 5
-Al    = 6
+GaCl  = 3
+GaCl2 = 4
+GaCl3 = 5
+NH3   = 6
+H2    = 7
+HCl   = 8
+N2    = 9
+Al    = 10
+Ga    = 11
+AlN   = 12
+GaN   = 13
+
+def readData():
+  dataFile = open("Data.json", "r")
+  data = json.load(dataFile)
+  for d in data:
+    print(d)
 
 def x(T):
   return T / 10000
@@ -91,3 +105,5 @@ def D(i, T):
 
 def celsiusToKelvin(C):
   return C + 273.15
+
+readData()
