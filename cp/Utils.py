@@ -1,5 +1,6 @@
 import math
 import json
+import numpy as np
 
 elements = 14
 
@@ -59,7 +60,7 @@ def PHI(i, T):
   xT = x(T)
   return phiCoefs[i][1] + phiCoefs[i][2] * math.log(xT) + phiCoefs[i][3] / (xT ** 2) + phiCoefs[i][4] / xT + phiCoefs[i][5] * xT + phiCoefs[i][6] * (xT ** 2) + phiCoefs[i][7] * (xT ** 3)
 
-def G(i, T):
+def Gibbs(i, T):
   '''
   Энергия Гиббса i-ой компоненты как функция температуры
 
@@ -120,3 +121,26 @@ def celsiusToKelvin(C):
   return C + 273.15
 
 readData()
+
+def jacobian(f, x):
+  h = 1.0e-4
+  n = len(x)
+  Jac = np.zeros([n, n])
+  f0 = f(x)
+  for i in np.arange(0, n, 1):
+    tt = x[i]
+    x[i] = tt + h
+    f1 = f(x)
+    x[i] = tt
+    Jac[:, i] = (f1 - f0) / h
+  return Jac, f0
+
+def newton(f, x, tol=1.0e-9):
+  iterMax = 50
+  for i in range(iterMax):
+    Jac, fO = jacobian(f, x)
+    if np.sqrt(np.dot(fO, fO) / len(x)) < tol:
+      return x, i
+    dx = np.linalg.solve(Jac, fO)
+    x = x - dx
+  print("Too many iterations for the Newton method")
