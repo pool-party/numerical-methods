@@ -262,6 +262,14 @@ $E = \sqrt{\sum_{i = 1}^n {\epsilon_i^2 \over n - 1}}$,где $\epsilon_i = y(x_
 Если $m = n$ среднеквадратичная аппроксимация близка к интерполяции. Можно рассмотреть влияние степени аппроксимирующего полинома на точность аппроксимации:
 ![img](https://lh5.googleusercontent.com/NS5O8pM0J9TMKWV2g8pvyC4yBIUHxjy45UaEZq1SJfVS4SkZJbeuiVRsGbxXacNyX6kW5amsiYiKxWxdu11vGgNxIEKsHHNkkhEb3XtQW5DiupBCm6LJx5ELXCTC4zLIyiUd4icl)
 
+
+
+
+
+
+
+
+
 ## Дополнение. Общий случай
 
 Пусть дана таблица и линейная комбинация пробных функций $\{φ_k\}, k = 1...m$.n - количество узлов.
