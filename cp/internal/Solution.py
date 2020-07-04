@@ -1,10 +1,10 @@
 import math
 import sympy as sy
-from scipy.optimize import fmin
 import numpy as np
 
-from Data import bank_td
-from Gauss import gaussMethod
+from internal.Data import bank_td
+from internal.Gauss import gaussMethod
+# change "internal.Solution" to just "Solution" if you run it from the `internal` dir CoolStoryBob
 
 Pa = 100000
 

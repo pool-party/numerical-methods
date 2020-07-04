@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
-import numpy as np
 from joblib import Parallel, delayed
 
-from Solution import *
+from internal.Solution import *
+# change "internal.Solution" to just "Solution" if you run it from the `internal` dir CoolStoryBob
 
 def calculate_delta_r9(T):
     return G0('AlCl3', T) + G0('NH3', T) - G0('AlN', T) - 3 * G0('HCl', T)

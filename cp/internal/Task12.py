@@ -1,4 +1,5 @@
-from Solution import *
+from internal.Solution import *
+# change "internal.Solution" to just "Solution" if you run it from the `internal` dir CoolStoryBob
 
 Pa = 100000
 R = 8.314
