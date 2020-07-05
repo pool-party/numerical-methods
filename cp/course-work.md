@@ -24,9 +24,9 @@ V^e_{Al} = (G_{AlCl} + G_{AlCl_2} + G_{AlCl_3})({\mu_{Al}\over\rho_{Al}})*10^9
 $$
 
 
-![cp-task1-a](/Users/asap/numerical-methods/assets/cp-task1-a.png)
+![cp-task1-a](../assets/cp-task1-a.png)
 
-![cp-task1-a](/Users/asap/numerical-methods/assets/cp-task1-b.png)
+![cp-task1-a](../assets/cp-task1-b.png)
 
 ## **Часть 2. Моделирование конверсии** **HCl в хлориды галлия** 
 
@@ -49,5 +49,7 @@ $$
 V^e_{Ga} = (G_{GaCl} + G_{GaCl_2} + G_{GaCl_3})({\mu_{Ga}\over\rho_{Ga}})*10^9
 $$
 
+![cp-task1-a](../assets/cp-task2-a.png)
 
+![cp-task1-a](../assets/cp-task2-b.png)
 
