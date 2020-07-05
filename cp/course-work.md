@@ -1,3 +1,20 @@
+$ 2Al(solid) + 2HCl \Leftrightarrow 2AlCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R1)$
+$ Al(solid) + 2HCl \Leftrightarrow AlCl_2 + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R2)$
+$ 2Al(solid) + 6HCl \Leftrightarrow 2AlCl_3 + 3H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R3)$
+
+$2Ga(liquid) + 2HCl \Leftrightarrow 2GaCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (R4)$
+$Ga(liquid) + 2HCl \Leftrightarrow GaCl_2 + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R5)$
+$2Ga(liquid) + 6HCl \Leftrightarrow 2GaCl_3 + 3H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R6)$
+
+$AlCl + NH_3 \Leftrightarrow AlN(solid) + HCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R7)$
+$2AlCl_2 + 2NH_3 \Leftrightarrow 2AlN(solid) + 4HCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R8)$
+$AlCl_3 + NH_3 + \Leftrightarrow AlN(solid) + 3HCl\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R9)$
+$GaCl + NH_3 \Leftrightarrow GaN(solid) + HCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R10)$
+$2GaCl_2 + 2NH_3 \Leftrightarrow 2GaN(solid) + 4HCl + H_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R11)$
+$GaCl_3 + NH_3 \Leftrightarrow GaN(solid) + 3HCl\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (R12)$
+
+
+
 ## **Часть 1. Моделирование конверсии** **HCl в хлориды алюминия** 
 
 
