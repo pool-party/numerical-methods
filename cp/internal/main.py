@@ -216,5 +216,87 @@ def second_task():
     plt.ylabel('ln(V_Ga), ln(нм/сек)')
     plt.show()
 
+def third_task():
+    STEPS = 20
+    T = 1100 + KELVIN
+
+    P_ATM = 10 ** 5
+
+    def partial_pressures(al_factor, h_factor):
+        return dict([
+            ('HCl', 0)
+            , ('AlCl3', al_factor * 30)
+            , ('GaCl', (1 - al_factor) * 30)
+            , ('NH3', 1500)
+            , ('H2', h_factor * 98470)
+            , ('N2', (1 - h_factor) * 98470)
+        ])
+
+    def V_algan(G_al, G_ga):
+        return (G_al * mu['AlN'] / ro['AlN'] + G_ga * mu['GaN'] / ro['GaN']) * 1e9
+
+
+    def K9(T):
+        delta_g = G_i('AlCl3', T) + G_i('NH3', T) - G_i('AlN', T) - 3 * G_i('HCl', T)
+        return math.exp(-delta_g / R / T) / P_ATM
+
+
+    def K10(T):
+        return math.exp((G_i('GaN', T) + G_i('HCl', T) + G_i('H2', T) - G_i('GaCl', T) - G_i('NH3', T)) / R / T)
+
+    variables = ['x', 'AlCl3', 'GaCl', 'NH3', 'HCl', 'H2']
+
+    def f_3(x, al_factor, h_factor):
+        index_dict = dict(zip(variables, range(6)))
+
+        def from_var(v):
+            return x[index_dict[v]]
+
+        pp = partial_pressures(al_factor, h_factor)
+        return np.array([
+            from_var('AlCl3') * from_var('NH3') - K9(T) * from_var('x') * from_var('HCl') ** 3
+            , from_var('GaCl') * from_var('NH3') - K10(T) * (1 - from_var('x')) * from_var('HCl') * from_var('H2')
+            , D_i('HCl', T) * (pp['HCl'] - from_var('HCl')) + 2 * D_i('H2', T) * (pp['H2'] - from_var('H2')) + 3 * D_i('NH3', T) * (pp['NH3'] - from_var('NH3'))
+            , 3 * D_i('AlCl3', T) * (pp['AlCl3'] - from_var('AlCl3')) + D_i('GaCl', T) * (pp['GaCl'] - from_var('GaCl')) + D_i('HCl', T) * (pp['HCl'] - from_var('HCl'))
+            , D_i('AlCl3', T) * (pp['AlCl3'] - from_var('AlCl3')) + D_i('GaCl', T) * (pp['GaCl'] - from_var('GaCl')) - D_i('NH3', T) * (pp['NH3'] - from_var('NH3'))
+            , from_var('x') * D_i('GaCl', T) * (pp['GaCl'] - from_var('GaCl')) - (1 - from_var('x')) * D_i('AlCl3', T) * (pp['AlCl3'] - from_var('AlCl3'))
+        ])
+
+    al_factors = np.linspace(0, 1, STEPS)
+    h_factors = [0, .1]
+    solutions = [[newton(f_3, [al_factor, h_factor],
+                         init=[1] + [i + 1000 for i in partial_pressures(al_factor, h_factor).values()][1:]) for
+                  al_factor in al_factors] for h_factor in h_factors]
+
+    for i in range(2):
+        solution = solutions[i]
+
+        _, ax = plt.subplots()
+
+        G_cl = dict([])
+        for elem in ['AlCl3', 'GaCl']:
+            G_cl[elem] = []
+            for j in range(len(al_factors)):
+                p_g = partial_pressures(al_factors[j], h_factors[i])
+                p_e = dict(zip(variables, solution[j]))
+                G_cl[elem].append(np.fabs(G(elem, p_e, T, P_g=p_g)))
+            clr = "r" if elem == 'AlCl3' else "b"
+            ax.plot(al_factors, G_cl[elem], label=elem, color=clr)
+        ax.set_xlabel('x_g')
+        ax.legend()
+        plt.show()
+
+        vs = [np.fabs(V_algan(G_cl['AlCl3'][j], G_cl['GaCl'][j])) for j in range(len(al_factors))]
+        plt.plot(al_factors, vs, 'b')
+        plt.xlabel('x_g')
+        plt.ylabel('V_AlGaN')
+        plt.show()
+
+        plt.plot(al_factors, [solution[j][0] for j in range(len(al_factors))], 'b')
+        plt.xlabel('x_g')
+        plt.ylabel('x')
+        plt.show()
+
 first_task()
 second_task()
+third_task()
