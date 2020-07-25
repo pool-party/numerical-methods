@@ -40,7 +40,7 @@ print("\nGradient solution:")
 gradient(*symmetric(random_A, random_b), EPS, MAX_ITERATIONS)
 print("\nGaussian solution:")
 print(gaussFunc(addColumn(random_A, random_b2)))
-#
+
 print("\n\n\nHilbert matrix:")
 print("Exact solution:")
 print(np.linalg.solve(hilbert_A, hilbert_b))
