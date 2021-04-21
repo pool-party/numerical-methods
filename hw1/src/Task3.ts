@@ -63,7 +63,7 @@ function distinctPalette(size: number): Color[] {
 }
 
 /**
- * //TODO.
+ * TODO doc.
  */
 export class PictureEnv {
   public readonly colors: Color[];
@@ -95,7 +95,7 @@ export class PictureEnv {
 }
 
 /**
- * //TODO.
+ * TODO doc.
  */
 export class Plane {
   public static readonly eps = 1e-10;
@@ -259,12 +259,12 @@ export class NewtonIterator {
     this.status = null;
   }
 
-  // All plt operations are not real!!!
   private saveSequence(zs: Complex[], limits: PictureEnv, fileName: string) {
-    plt.figure();
-    plt.axis('equal');
-    plt.xlim(limits.lx, limits.rx);
-    plt.ylim(limits.ly, limits.ry);
+    // Python injection
+    // plt.figure();
+    // plt.axis('equal');
+    // plt.xlim(limits.lx, limits.rx);
+    // plt.ylim(limits.ly, limits.ry);
 
     zs.forEach(z => {
       const [s, k] = this.newtonIterations(z);
@@ -273,18 +273,19 @@ export class NewtonIterator {
       });
       const root = this.plane.roots[k];
 
-      plt.scatter(x, y, linspace(50, 10, s.length), redGreenRange(s.length));
-      plt.plot(x, y, 'o', (color = 'black'), (lw = 1), (ls = '-'), (ms = 1)); //bullshit.
-      plt.plot(root.re, root.im, 'gh', (ms = 7)); //bullshit.
+      // Python injection
+      // plt.scatter(x, y, linspace(50, 10, s.length), redGreenRange(s.length));
+      // plt.plot(x, y, 'o', (color = 'black'), (lw = 1), (ls = '-'), (ms = 1));
+      // plt.plot(root.re, root.im, 'gh', (ms = 7));
 
       if (this.status !== null) this.status.step();
     });
 
-    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`)); //bullshit.
+    // Python injection
+    // plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`));
     if (this.status !== null) this.status.step();
   }
 
-  // All plt operations are not real!!!
   private saveClassification(limits: PictureEnv, fileName: string) {
     const [w, h] = [limits.width() * limits.px + 1, limits.height() * limits.py + 1];
     const roots = this.plane.roots.length;
@@ -306,15 +307,18 @@ export class NewtonIterator {
       if (this.status !== null) this.status.step();
     }
 
-    plt.figure();
-    plt.axis('equal');
+    // Python injection
+    // plt.figure();
+    // plt.axis('equal');
     for (let i = 0; i <= roots; i++) {
       const [x, y] = points[i].map(z => {
         return [z.re, z.im];
       });
-      plt.plot(x, y, 'o', (color = limits.colors[i]), (ms = 1)); //bullshit.
+      // Python injection
+      // plt.plot(x, y, 'o', (color = limits.colors[i]), (ms = 1));
     }
-    plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`)); //bullshit.
+    // Python injection
+    // plt.savefig(os.path.join(os.getcwd(), 'task3', 'out', `${fileName}.png`));
 
     if (this.status !== null) this.status.step();
   }

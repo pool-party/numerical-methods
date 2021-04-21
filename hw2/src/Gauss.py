@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import copy
 
 
@@ -20,7 +20,7 @@ def gaussFunc(a):
 
         if my != g:
             # a[g][:], a[my][:] = a[my][:], a[g][:]
-            # numpy.swapaxes(a, 1, 0)
+            # np.swapaxes(a, 1, 0)
             b = copy.deepcopy(a[g])
             a[g] = copy.deepcopy(a[my])
             a[my] = copy.deepcopy(b)
@@ -48,7 +48,7 @@ def gaussFunc(a):
 
 
 def backTrace(a, len1, len2):
-    a = numpy.array(a)
+    a = np.array(a)
     i = len1 - 1
     while i > 0:
         j = i - 1
